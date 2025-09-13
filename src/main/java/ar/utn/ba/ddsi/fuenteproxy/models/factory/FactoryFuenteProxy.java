@@ -21,7 +21,7 @@ public class FactoryFuenteProxy {
         }; //ARREGLAR ESTE TEMA
         return new FuenteDemo(conexion, url);
     }
-    public FuenteMetamapa createFuenteMetamapa(URL url){
+    public FuenteMetamapa createFuenteMetamapa(String url){
         WebClient.Builder webClientBuilder = WebClient.builder();
         return new FuenteMetamapa(url,webClientBuilder);
     }

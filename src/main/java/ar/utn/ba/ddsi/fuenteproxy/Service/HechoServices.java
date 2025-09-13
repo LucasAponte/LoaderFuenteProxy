@@ -30,13 +30,7 @@ public class HechoServices implements IHechoServices {
     @Override
     public void BuscarNuevasFuentes() {
         List<Fuente> fuentes =this.hechoRepository.buscarNuevasRutas(this.ultimoId);
-        String ruta = "dsdas";
-        URL url = null;
-        try {
-            url = new URL(ruta);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        String url  = "dsdas";
         fuenteProxis.add(this.factoryFuenteProxy.createFuenteMetamapa(url));
     }
 }
