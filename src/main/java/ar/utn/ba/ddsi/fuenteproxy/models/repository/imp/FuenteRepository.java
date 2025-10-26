@@ -1,4 +1,4 @@
-package ar.utn.ba.ddsi.fuenteproxy.models.Repository.imp;
+/*package ar.utn.ba.ddsi.fuenteproxy.models.Repository.imp;
 
 import ar.utn.ba.ddsi.fuenteproxy.models.Repository.IFuenteRepository;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.Fuente;
@@ -14,9 +14,10 @@ import java.util.List;
 public class FuenteRepository implements IFuenteRepository {
 
     @Override
-    public List<FuenteProxy> buscarNuevasRutas(Long ultimoID){
+    public List<Fuente> buscarNuevasRutas(Long ultimoID){
         EnumTipoFuenteProxy tipoFuenteProxy = EnumTipoFuenteProxy.METAMAPA;
-        List<FuenteProxy> rutas = new ArrayList<>();
+        List<Fuente> rutas = new ArrayList<>();
         return rutas;
     }
 }
+*/
