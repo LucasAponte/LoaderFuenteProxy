@@ -10,7 +10,7 @@ public class Hecho {
     private LocalDate fecha;
     private LocalDate fechaDeCarga;
     private Ubicacion lugarDeOcurrencia;
-    private String origen;
+    private Fuente fuente;
     private Etiqueta etiqueta;
     private boolean visibilidad = true;
 
@@ -45,7 +45,7 @@ public class Hecho {
         this.fecha = fecha;
     }
 
-    public String getOrigen() {return origen;}
+    public Fuente getFuente() {return this.fuente;}
 
     public Boolean esVisible() {return visibilidad;}
     public void cambiarVisibilidad() {visibilidad = true;} //asi por el momento

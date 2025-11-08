@@ -6,36 +6,44 @@ import jakarta.persistence.*;
 public class Fuente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFuente;
-
+    private long idFuente;
+    @Column(nullable = false)
+    private String nombre;
+    @Column(nullable = false)
     private String url;
-
     @Enumerated(EnumType.STRING)
-    private EnumTipoFuenteProxy tipoFuenteProxy;
+    @Column(nullable = false)
+    private EnumTipoFuente tipoFuente;
 
-    public Fuente() {}
-
-    public Fuente(Long id, String url, EnumTipoFuenteProxy tipoFuenteProxy) {
+    public Fuente(long id, String nombre, String url, EnumTipoFuente tipoFuente) {
         this.idFuente = id;
+        this.nombre = nombre;
         this.url = url;
-        this.tipoFuenteProxy = tipoFuenteProxy;}
-    public Long getIdFuente() {
+        this.tipoFuente = tipoFuente;
+    }
+    public Fuente() {
+    }
+    public long getIdFuente() {
         return idFuente;
     }
-    public void setIdFuente(Long idFuente) {
+    public void setIdFuente(long idFuente) {
         this.idFuente = idFuente;
     }
-    public String getUrl() {
-        return url;
+    public String getNombre() {
+        return nombre;
     }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getUrl() {
+        return url;}
     public void setUrl(String url) {
         this.url = url;
     }
-    public EnumTipoFuenteProxy getTipoFuenteProxy() {
-        return tipoFuenteProxy;
+    public EnumTipoFuente getTipoFuente() {
+        return tipoFuente;
     }
-    public void setTipoFuenteProxy(EnumTipoFuenteProxy tipoFuenteProxy) {
-        this.tipoFuenteProxy = tipoFuenteProxy;
-    }
+    public void setTipoFuente(EnumTipoFuente tipoFuente) {
+        this.tipoFuente = tipoFuente;}
 
 }
