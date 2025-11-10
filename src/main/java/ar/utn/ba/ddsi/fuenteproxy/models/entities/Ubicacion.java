@@ -3,10 +3,12 @@ package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 public class Ubicacion {
     private float latitud;
     private float longitud;
+    private Provincia provincia;
 
     public Ubicacion(float latitud, float longitud) {
         this.latitud = latitud;
         this.longitud = longitud;
+
     }
 
     public void setUbicacion(float newLatitud, float newLongitud) {

@@ -18,7 +18,7 @@ public class HechoController { //Ver si esta bien el nombre
     private IHechoServices hechoServices;
 
     @GetMapping
-    public List<Hecho> BuscarHechos() {
+    public List<Hecho> obtenerHechos() {
         System.out.println("Funciona el controller");
         return this.hechoServices.BuscarHechos();
     }

@@ -9,13 +9,13 @@ import ar.utn.ba.ddsi.fuenteproxy.models.entities.FuenteDemo;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.FuenteMetamapa;
 import org.springframework.web.reactive.function.client.WebClient;
 
-
 public class FactoryFuenteProxy {
-    public FuenteDemo createFuenteDemo(URL url)
+
+    public FuenteDemo createFuenteDemo(String url)
     {
         Conexion conexion = new Conexion() {
             @Override
-            public Map<String, Object> siguienteHecho(URL url, LocalDateTime fechaUltimaConsulta) {
+            public Map<String, Object> siguienteHecho(String url) {
                 return Collections.emptyMap();
             }
         }; //ARREGLAR ESTE TEMA

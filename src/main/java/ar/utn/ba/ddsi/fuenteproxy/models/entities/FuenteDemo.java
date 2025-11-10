@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class FuenteDemo extends FuenteProxy {
     private Conexion conexion;
-    private URL url;
+    private String url;
     private List<Hecho> hechosCargados;
 
-    public FuenteDemo( Conexion conexion, URL url) {
+    public FuenteDemo( Conexion conexion, String url) {
         this.conexion = conexion;
         this.url = url;
         this.hechosCargados = new ArrayList<>();
@@ -24,7 +24,7 @@ public class FuenteDemo extends FuenteProxy {
     }
 
     public void agregarHecho() {
-        Map<String, Object> hechoObtenido = conexion.siguienteHecho(url, ultimaConsulta);
+        Map<String, Object> hechoObtenido = conexion.siguienteHecho(url);
         if( hechoObtenido != null) {
             Hecho hechoMapeado = construirHechoDesdeMapa(hechoObtenido);
             hechosCargados.add(hechoMapeado);

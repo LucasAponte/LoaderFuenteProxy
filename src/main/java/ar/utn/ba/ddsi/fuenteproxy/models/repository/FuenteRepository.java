@@ -1,4 +1,4 @@
-package ar.utn.ba.ddsi.fuenteproxy.models.repository;
+package ar.utn.ba.ddsi.fuenteproxy.models.Repository;
 
 
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.Fuente;

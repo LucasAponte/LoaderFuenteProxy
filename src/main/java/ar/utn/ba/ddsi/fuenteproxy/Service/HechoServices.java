@@ -1,12 +1,11 @@
 package ar.utn.ba.ddsi.fuenteproxy.Service;
 
-import ar.utn.ba.ddsi.fuenteproxy.models.repository.FuenteRepository;
+import ar.utn.ba.ddsi.fuenteproxy.models.Repository.FuenteRepository;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.*;
 import ar.utn.ba.ddsi.fuenteproxy.models.factory.FactoryFuenteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
