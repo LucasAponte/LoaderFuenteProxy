@@ -1,6 +1,5 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class FuenteDemo extends FuenteProxy {
-    private Conexion conexion;
+    private InterfaceConexion interfaceConexion;
     private String url;
     private List<Hecho> hechosCargados;
 
-    public FuenteDemo( Conexion conexion, String url) {
-        this.conexion = conexion;
+    public FuenteDemo(InterfaceConexion interfaceConexion, String url) {
+        this.interfaceConexion = interfaceConexion;
         this.url = url;
         this.hechosCargados = new ArrayList<>();
     }
@@ -24,7 +23,7 @@ public class FuenteDemo extends FuenteProxy {
     }
 
     public void agregarHecho() {
-        Map<String, Object> hechoObtenido = conexion.siguienteHecho(url);
+        Map<String, Object> hechoObtenido = interfaceConexion.siguienteHecho(url);
         if( hechoObtenido != null) {
             Hecho hechoMapeado = construirHechoDesdeMapa(hechoObtenido);
             hechosCargados.add(hechoMapeado);

@@ -1,28 +1,62 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.factory;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Map;
 
-import ar.utn.ba.ddsi.fuenteproxy.models.entities.Conexion;
+import java.util.Collections;
+
+import ar.utn.ba.ddsi.fuenteproxy.models.entities.InterfaceConexion;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.FuenteDemo;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.FuenteMetamapa;
+import ar.utn.ba.ddsi.fuenteproxy.models.entities.FuenteProxy;
+import ar.utn.ba.ddsi.fuenteproxy.models.entities.Fuente;
+import ar.utn.ba.ddsi.fuenteproxy.models.entities.EnumTipoFuente;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class FactoryFuenteProxy {
 
-    public FuenteDemo createFuenteDemo(String url)
-    {
-        Conexion conexion = new Conexion() {
-            @Override
-            public Map<String, Object> siguienteHecho(String url) {
-                return Collections.emptyMap();
-            }
-        }; //ARREGLAR ESTE TEMA
-        return new FuenteDemo(conexion, url);
+   //Todod es del constructor es demasiado al dope?
+    private static FactoryFuenteProxy instance;
+    private FactoryFuenteProxy() {
     }
-    public FuenteMetamapa createFuenteMetamapa(String url){
+    public static FactoryFuenteProxy getInstance() {
+        if (instance == null) {
+            synchronized (FactoryFuenteProxy.class) {
+                if (instance == null) {
+                    instance = new FactoryFuenteProxy();
+                }
+            }
+        }
+        return instance;
+    }
+    // Nuevo método que recibe la entidad persistida y delega según el tipo
+    public FuenteProxy createFuenteProxy(Fuente fuente) {
+        if (fuente == null) {
+            throw new IllegalArgumentException("Fuente no puede ser null");
+        }
+        EnumTipoFuente tipo = fuente.getTipoFuente();
+        String url = fuente.getUrl();
+        if (tipo == null) {
+            throw new IllegalArgumentException("Tipo de fuente no definido en la entidad Fuente");
+        }
+        switch (tipo) {
+            case METAMAPA:
+                return createFuenteMetamapa(url);
+            case DEMO:
+                return createFuenteDemo(url);
+            case ESTATICA:
+            default:
+                throw new UnsupportedOperationException("Tipo de fuente no soportado: " + tipo);
+        }
+    }
+
+    // Métodos auxiliares: crean instancias concretas a partir de la URL
+    private FuenteDemo createFuenteDemo(String url) {
+        //Funca???
+        //Que le tengo que mandar a conexión?
+        InterfaceConexion interfaceConexion = (u) -> Collections.emptyMap();
+        return new FuenteDemo(interfaceConexion, url);
+    }
+    //Porque son metodos private??
+    private FuenteMetamapa createFuenteMetamapa(String url) {
         WebClient.Builder webClientBuilder = WebClient.builder();
-        return new FuenteMetamapa(url,webClientBuilder);
+        return new FuenteMetamapa(url, webClientBuilder);
     }
 }
