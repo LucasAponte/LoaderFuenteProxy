@@ -1,6 +1,7 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 
 public class Provincia {
+    private long idProvincia;
     private String nombre;
     private String pais;
 
