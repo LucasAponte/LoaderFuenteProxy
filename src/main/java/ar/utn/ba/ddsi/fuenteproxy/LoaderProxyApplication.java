@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = "ar.utn.ba.ddsi.fuenteproxy.models.entities")
-@EnableJpaRepositories(basePackages = "ar.utn.ba.ddsi.fuenteproxy.models.Repository")
+@EnableJpaRepositories(basePackages = "ar.utn.ba.ddsi.fuenteproxy.models.repository")
 public class LoaderProxyApplication {
     public static void main(String[] args) {
         SpringApplication.run(LoaderProxyApplication.class, args);

@@ -1,6 +1,7 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 
 public class Ubicacion {
+    private long id_Ubicacion;
     private float latitud;
     private float longitud;
     private Provincia provincia;

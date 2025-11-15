@@ -43,7 +43,10 @@ public class HechoServices implements IHechoServices {
         fuentes.forEach(fuente -> {
             this.fuenteProxis.add(this.factoryFuenteProxy.createFuenteProxy(fuente));
         });
-        //PRUEBA
+        this.fuenteProxis.forEach(fuente -> {
+            System.out.println(fuente.obtenerHechos());
+        });
+        //PRUEB
         this.fuenteProxis.forEach(fuenteProxy ->{
                 System.out.println("Fuente Proxy agregada: " + fuenteProxy.toString());
 
