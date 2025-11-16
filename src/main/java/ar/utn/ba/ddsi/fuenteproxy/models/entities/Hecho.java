@@ -1,6 +1,10 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 
+import ar.utn.ba.ddsi.fuenteproxy.models.dtos.HechoInputDTO;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Hecho {
@@ -9,19 +13,32 @@ public class Hecho {
     private Categoria categoria;
     private LocalDate fecha;
     private LocalDate fechaDeCarga;
-    private Ubicacion lugarDeOcurrencia;
-    private Fuente fuente;
+    private Ubicacion ubicacion;
     private Etiqueta etiqueta;
-    private boolean visibilidad = true;
+    private EnumTipoHecho tipoHecho;
+    private List<Adjunto> adjuntos = new ArrayList<>();
+
 
     public Hecho(String titulo, String descripcion, Categoria categoria,Ubicacion lugarDeOcurrencia, LocalDate fecha) {
         this.Titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
-        this.lugarDeOcurrencia = lugarDeOcurrencia;
+        this.ubicacion = lugarDeOcurrencia;
         this.fecha = fecha;
 
     }
+    public Hecho(HechoInputDTO hechoDTO) {
+        this.Titulo = hechoDTO.getTitulo();
+        this.descripcion = hechoDTO.getDescripcion();
+        this.categoria = new Categoria(hechoDTO.getCategoria());
+        this.ubicacion = new Ubicacion(Float.parseFloat(hechoDTO.getUbicacionLat()), Float.parseFloat(hechoDTO.getUbicacionLon()));
+        this.fecha = LocalDate.parse(hechoDTO.getFecha());
+        this.fechaDeCarga = LocalDate.parse(hechoDTO.getFechaDeCarga());
+        this.etiqueta = new Etiqueta(hechoDTO.getEtiqueta());
+        this.tipoHecho = EnumTipoHecho.valueOf(hechoDTO.getTipoHecho());
+
+    }
+
     //getters y setters
     public String getTitulo() {return Titulo;}
     public void cambiarTitulo(String titulo) {this.Titulo= titulo;}
@@ -35,19 +52,20 @@ public class Hecho {
     public void cambiarUbicacion(String dato, String dato1) {
         float nuevaLatitud = Float.parseFloat(dato);
         float nuevaLongitud = Float.parseFloat(dato1);
-        lugarDeOcurrencia.setUbicacion(nuevaLatitud,nuevaLongitud);
+        ubicacion.setUbicacion(nuevaLatitud,nuevaLongitud);
     }
 
     //string a fecha??
     public LocalDate getFecha() {return fecha;}
-
+    public String getDescripcion() {return descripcion;}
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-
-    public Fuente getFuente() {return this.fuente;}
-
-    public Boolean esVisible() {return visibilidad;}
-    public void cambiarVisibilidad() {visibilidad = true;} //asi por el momento
+    public LocalDate getFechaDeCarga() {return fechaDeCarga;}
+    public void setFechaDeCarga(LocalDate fechaDeCarga) {this.fechaDeCarga = fechaDeCarga;}
+    public Ubicacion getUbicacion() {return ubicacion;}
+    public EnumTipoHecho getTipoHecho() {return tipoHecho;}
+    public void setTipoHecho(EnumTipoHecho tipoHecho) {this.tipoHecho = tipoHecho;}
+    public List<Adjunto> getAdjuntos() {return adjuntos;}
 
 }

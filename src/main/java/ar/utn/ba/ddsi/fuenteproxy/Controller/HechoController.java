@@ -2,6 +2,7 @@ package ar.utn.ba.ddsi.fuenteproxy.Controller;
 
 
 import ar.utn.ba.ddsi.fuenteproxy.Service.IHechoServices;
+import ar.utn.ba.ddsi.fuenteproxy.models.dtos.HechoOutputDTO;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.Hecho;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class HechoController { //Ver si esta bien el nombre
     private IHechoServices hechoServices;
 
     @GetMapping
-    public List<Hecho> obtenerHechos() {
+    public List<HechoOutputDTO> obtenerHechos() {
         System.out.println("Funciona el controller");
         return this.hechoServices.BuscarHechos();
     }

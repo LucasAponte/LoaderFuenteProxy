@@ -1,5 +1,6 @@
 package ar.utn.ba.ddsi.fuenteproxy.Service;
 
+import ar.utn.ba.ddsi.fuenteproxy.models.dtos.HechoOutputDTO;
 import ar.utn.ba.ddsi.fuenteproxy.models.repository.IFuenteRepository;
 import ar.utn.ba.ddsi.fuenteproxy.models.entities.*;
 import ar.utn.ba.ddsi.fuenteproxy.models.factory.FactoryFuenteProxy;
@@ -20,37 +21,46 @@ public class HechoServices implements IHechoServices {
     private IFuenteRepository fuenteRepository ;
 
     @Override
-    public List<Hecho> BuscarHechos() {
+    public List<HechoOutputDTO> BuscarHechos() {
         System.out.println("Buscando Hechos");
         BuscarNuevasFuentes();
+        System.out.println("Fuentes Proxy cargadas: " + this.fuenteProxis.size());
         List<Hecho> hechosObtenidos = new ArrayList<>();
-        //Ojo que llega fuente proxy Null, no deberíam, por eso le hago el new Arraylist, falta constructo
         this.fuenteProxis.forEach(fuenteProxy -> hechosObtenidos.addAll(fuenteProxy.obtenerHechos()));
-        //MOCKEO
-        //hechosObtenidos.add(new Hecho("hecho1","es un hecho",new Categoria("categoria1"),new Ubicacion(11,5), LocalDate.now()));
-        return hechosObtenidos;
+        System.out.println("Hechos Obtenidos: " + hechosObtenidos.size());
+        return pasarAHechosOuputDTO(hechosObtenidos);
     }
-
+    public List<HechoOutputDTO> pasarAHechosOuputDTO(List<Hecho> hechos) {
+        List<HechoOutputDTO> hechoOutputDTOs = new ArrayList<>();
+        hechos.forEach(hecho -> {
+            HechoOutputDTO dto = new HechoOutputDTO();
+            dto.HechoOutputDTO(hecho);
+            hechoOutputDTOs.add(dto);
+        });
+        return hechoOutputDTOs;
+    }
     @Override
     public void BuscarNuevasFuentes() {
         System.out.println("Buscando Nuevas Fuentes");
+        //SOLOPORAHORA
         List<Fuente> fuentes = this.fuenteRepository.findByIdFuenteGreaterThan(this.ultimoId);
         fuentes.forEach(fuente -> {
-            System.out.println(fuente.getIdFuente());
-            System.out.println(fuente.getNombre());
-            System.out.println(fuente.getTipoFuente());
-        });
+                    System.out.println(fuente.getIdFuente());
+                    System.out.println(fuente.getNombre());
+                    System.out.println(fuente.getTipoFuente());
+                });
         fuentes.forEach(fuente -> {
-            this.fuenteProxis.add(this.factoryFuenteProxy.createFuenteProxy(fuente));
+            if(fuente.getTipoFuente().name().equalsIgnoreCase("METAMAPA")){
+                this.fuenteProxis.add(this.factoryFuenteProxy.createFuenteProxy(fuente));
+            }
+
         });
-        this.fuenteProxis.forEach(fuente -> {
-            System.out.println(fuente.obtenerHechos());
-        });
-        //PRUEB
+        //PRUEBA
         this.fuenteProxis.forEach(fuenteProxy ->{
                 System.out.println("Fuente Proxy agregada: " + fuenteProxy.toString());
 
             }
         );
     }
+
 }
