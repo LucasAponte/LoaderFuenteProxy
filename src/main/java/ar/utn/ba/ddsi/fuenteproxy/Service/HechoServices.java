@@ -42,12 +42,13 @@ public class HechoServices implements IHechoServices {
     @Override
     public void BuscarNuevasFuentes() {
         System.out.println("Buscando Nuevas Fuentes");
-        //SOLOPORAHORA
+        //SOLOPORAHORA MEJORAR TODOESTO XD
         List<Fuente> fuentes = this.fuenteRepository.findByIdFuenteGreaterThan(this.ultimoId);
         fuentes.forEach(fuente -> {
-                    System.out.println(fuente.getIdFuente());
+                    System.out.println(fuente.getId_fuente());
                     System.out.println(fuente.getNombre());
                     System.out.println(fuente.getTipoFuente());
+                    this.ultimoId +=1;
                 });
         fuentes.forEach(fuente -> {
             if(fuente.getTipoFuente().name().equalsIgnoreCase("METAMAPA")){

@@ -14,8 +14,8 @@ public class HechoOutputDTO {
     private String titulo;
     private String descripcion;
     private String categoria;
-    private LocalDate fecha;
-    private LocalDate fechaDeCarga;
+    private String fecha;
+    private String fechaDeCarga;
     private String ubicacionLat; // latitud como string
     private String ubicacionLon; // longitud como string
     private String etiqueta;
@@ -28,8 +28,8 @@ public class HechoOutputDTO {
         this.titulo = hecho.getTitulo();
         this.descripcion = hecho.getDescripcion();
         this.categoria = hecho.getCategoria().getNombre();
-        this.fecha = hecho.getFecha();
-        this.fechaDeCarga = hecho.getFechaDeCarga();
+        this.fecha = hecho.getFecha().toString();
+        this.fechaDeCarga = hecho.getFechaDeCarga().toString();
         this.etiqueta = hecho.getEtiqueta() != null ? hecho.getEtiqueta().getNombre(): null;
         this.ubicacionLat = String.valueOf(hecho.getUbicacion().getLatitud());
         this.ubicacionLon = String.valueOf(hecho.getUbicacion().getLongitud());

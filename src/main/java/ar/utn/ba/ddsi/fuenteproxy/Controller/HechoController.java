@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+//Implementar el hecho de no bucar todos los hechos
+//Cambiar el Local DAte a Local Date Time y así poder recibir por parametro hasta donde treaer
 @RestController
 @RequestMapping("/hechos")
 public class HechoController { //Ver si esta bien el nombre

@@ -66,7 +66,7 @@ public class FuenteMetamapa extends FuenteProxy {
                                     }
                                 });
                     })
-                    .timeout(Duration.ofSeconds(5))
+                    .timeout(Duration.ofSeconds(50))
                     .doOnError(ex -> {
                         System.err.println("❌ Error general: " + ex.getMessage());
                         ex.printStackTrace();
