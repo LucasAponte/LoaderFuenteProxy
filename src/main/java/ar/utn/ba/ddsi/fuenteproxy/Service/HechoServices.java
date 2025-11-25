@@ -26,10 +26,20 @@ public class HechoServices implements IHechoServices {
         BuscarNuevasFuentes();
         System.out.println("Fuentes Proxy cargadas: " + this.fuenteProxis.size());
         List<Hecho> hechosObtenidos = new ArrayList<>();
-        this.fuenteProxis.forEach(fuenteProxy -> hechosObtenidos.addAll(fuenteProxy.obtenerHechos()));
+        this.fuenteProxis.forEach(fuenteProxy -> hechosObtenidos.addAll(ObtenerHechosDeFuente(fuenteProxy)));
         System.out.println("Hechos Obtenidos: " + hechosObtenidos.size());
         return pasarAHechosOuputDTO(hechosObtenidos);
     }
+    public List<Hecho> ObtenerHechosDeFuente(FuenteProxy fuenteProxy) {
+        System.out.println("Obteniendo Hechos de Fuentes");
+        List<Hecho> hechosObtenidos = fuenteProxy.obtenerHechos();
+        Fuente fuente = this.fuenteRepository.findByUrl(fuenteProxy.getUrl());
+        hechosObtenidos.forEach(hecho -> {
+            hecho.setFuente(fuente);
+        });
+        return hechosObtenidos;
+    }
+
     public List<HechoOutputDTO> pasarAHechosOuputDTO(List<Hecho> hechos) {
         List<HechoOutputDTO> hechoOutputDTOs = new ArrayList<>();
         hechos.forEach(hecho -> {

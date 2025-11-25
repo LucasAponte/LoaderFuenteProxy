@@ -12,4 +12,7 @@ import java.util.List;
 public interface IFuenteRepository extends JpaRepository<Fuente, Long> {
     @Query("SELECT f FROM Fuente f WHERE f.id_fuente > :ultimoID")
     List<Fuente> findByIdFuenteGreaterThan(Long ultimoID);
+
+    @Query("SELECT f FROM Fuente f WHERE f.url = :url")
+    Fuente findByUrl(String url);
 }

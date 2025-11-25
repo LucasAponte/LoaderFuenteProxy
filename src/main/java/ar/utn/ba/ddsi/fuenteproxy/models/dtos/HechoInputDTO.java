@@ -20,6 +20,7 @@ public class HechoInputDTO {
     private String ubicacionLon; // longitud como string
     private String etiqueta;
     private String tipoHecho;
+    private String fuente;
     private List<AdjuntoDTO> adjuntos = new java.util.ArrayList<>();
 
     public HechoInputDTO() {

@@ -33,6 +33,8 @@ public class FactoryFuenteProxy {
         }
         EnumTipoFuente tipo = fuente.getTipoFuente();
         String url = fuente.getUrl();
+        String nombre = fuente.getNombre();
+        String tipoFuenteStr = fuente.getTipoFuente().toString();
         if (tipo == null) {
             throw new IllegalArgumentException("Tipo de fuente no definido en la entidad Fuente");
         }

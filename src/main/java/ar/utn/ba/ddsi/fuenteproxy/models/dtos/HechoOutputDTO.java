@@ -20,6 +20,7 @@ public class HechoOutputDTO {
     private String ubicacionLon; // longitud como string
     private String etiqueta;
     private String tipoHecho;
+    private FuenteDTO fuente;
     private List<AdjuntoDTO> adjuntos;
     public HechoOutputDTO() {
     }
@@ -34,6 +35,7 @@ public class HechoOutputDTO {
         this.ubicacionLat = String.valueOf(hecho.getUbicacion().getLatitud());
         this.ubicacionLon = String.valueOf(hecho.getUbicacion().getLongitud());
         this.tipoHecho = hecho.getTipoHecho().name();
+        this.fuente = new FuenteDTO(hecho.getFuente());
         hecho.getAdjuntos().forEach(adjunto -> this.adjuntos.add(new AdjuntoDTO(adjunto)));
     }
 

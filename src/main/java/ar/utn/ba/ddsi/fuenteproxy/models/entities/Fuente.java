@@ -21,6 +21,12 @@ public class Fuente {
         this.url = url;
         this.tipoFuente = tipoFuente;
     }
+    public Fuente(String nombre, String url, EnumTipoFuente tipoFuente) {
+        this.nombre = nombre;
+        this.url = url;
+        this.tipoFuente = tipoFuente;
+    }
+
     public Fuente() {
     }
     public long getId_fuente() {

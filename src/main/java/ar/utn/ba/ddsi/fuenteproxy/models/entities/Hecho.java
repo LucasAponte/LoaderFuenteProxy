@@ -1,5 +1,6 @@
 package ar.utn.ba.ddsi.fuenteproxy.models.entities;
 
+import ar.utn.ba.ddsi.fuenteproxy.models.dtos.FuenteDTO;
 import ar.utn.ba.ddsi.fuenteproxy.models.dtos.HechoInputDTO;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class Hecho {
     private Ubicacion ubicacion;
     private Etiqueta etiqueta;
     private EnumTipoHecho tipoHecho;
+    private Fuente fuente;
     private List<Adjunto> adjuntos = new ArrayList<>();
 
 
@@ -36,7 +38,6 @@ public class Hecho {
         this.fechaDeCarga = LocalDate.parse(hechoDTO.getFechaDeCarga());
         this.etiqueta = new Etiqueta(hechoDTO.getEtiqueta());
         this.tipoHecho = EnumTipoHecho.valueOf(hechoDTO.getTipoHecho());
-
     }
 
     //getters y setters
@@ -47,6 +48,7 @@ public class Hecho {
     public void cambiarCategoria(String categoria) {this.categoria.setNombre(categoria);}
     public Etiqueta getEtiqueta() {return etiqueta;}
     public void cambiarEtiqueta(String etiqueta) {this.etiqueta.setNombre(etiqueta);}
+    public Fuente getFuente() {return fuente;}
 
     //Así me vendría la info, en String?
     public void cambiarUbicacion(String dato, String dato1) {
@@ -67,5 +69,5 @@ public class Hecho {
     public EnumTipoHecho getTipoHecho() {return tipoHecho;}
     public void setTipoHecho(EnumTipoHecho tipoHecho) {this.tipoHecho = tipoHecho;}
     public List<Adjunto> getAdjuntos() {return adjuntos;}
-
+    public void setFuente(Fuente fuente) {this.fuente = fuente;}
 }

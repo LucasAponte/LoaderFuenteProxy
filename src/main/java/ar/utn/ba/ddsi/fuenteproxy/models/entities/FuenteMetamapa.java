@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 @Component
 public class FuenteMetamapa extends FuenteProxy {
 
-    private String url;
     private final WebClient webClient;
 
     public FuenteMetamapa(@Value("www") String url, WebClient.Builder builder) {
@@ -36,8 +35,6 @@ public class FuenteMetamapa extends FuenteProxy {
         }
         return hechos;
     }
-
-
 
     public List<HechoInputDTO> obtenerHechosDesdeUrl(String urlCompleta) {
         System.out.println("Obteniendo hechos desde URL: " + urlCompleta);

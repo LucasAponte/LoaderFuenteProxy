@@ -20,7 +20,6 @@ public class HechoController { //Ver si esta bien el nombre
 
     @Autowired
     private IHechoServices hechoServices;
-
     @GetMapping
     public List<HechoOutputDTO> obtenerHechos() {
         System.out.println("Funciona el controller");
