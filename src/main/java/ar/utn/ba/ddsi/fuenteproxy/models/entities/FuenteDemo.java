@@ -8,12 +8,11 @@ import java.util.Map;
 
 public class FuenteDemo extends FuenteProxy {
     private InterfaceConexion interfaceConexion;
-    private String url;
     private List<Hecho> hechosCargados;
 
     public FuenteDemo(InterfaceConexion interfaceConexion, String url) {
         this.interfaceConexion = interfaceConexion;
-        this.url = url;
+        this.url = url; // Sets the parent's url field
         this.hechosCargados = new ArrayList<>();
     }
 
