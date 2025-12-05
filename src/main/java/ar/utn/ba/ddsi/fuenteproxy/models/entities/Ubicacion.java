@@ -9,7 +9,12 @@ public class Ubicacion {
     public Ubicacion(float latitud, float longitud) {
         this.latitud = latitud;
         this.longitud = longitud;
+    }
 
+    public Ubicacion(float latitud, float longitud, Provincia provincia) {
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.provincia = provincia;
     }
 
     public void setUbicacion(float newLatitud, float newLongitud) {

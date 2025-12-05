@@ -4,6 +4,7 @@ import ar.utn.ba.ddsi.fuenteproxy.models.dtos.FuenteDTO;
 import ar.utn.ba.ddsi.fuenteproxy.models.dtos.HechoInputDTO;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Hecho {
     private String descripcion;
     private Categoria categoria;
     private LocalDate fecha;
-    private LocalDate fechaDeCarga;
+    private LocalDateTime fechaDeCarga;
     private Ubicacion ubicacion;
     private Etiqueta etiqueta;
     private EnumTipoHecho tipoHecho;
@@ -33,9 +34,9 @@ public class Hecho {
         this.Titulo = hechoDTO.getTitulo();
         this.descripcion = hechoDTO.getDescripcion();
         this.categoria = new Categoria(hechoDTO.getCategoria());
-        this.ubicacion = new Ubicacion(Float.parseFloat(hechoDTO.getUbicacionLat()), Float.parseFloat(hechoDTO.getUbicacionLon()));
+        this.ubicacion = new Ubicacion(hechoDTO.getUbicacion().getLatitud(), hechoDTO.getUbicacion().getLongitud(),new Provincia(hechoDTO.getUbicacion().getProvincia(),hechoDTO.getUbicacion().getPais()));
         this.fecha = LocalDate.parse(hechoDTO.getFecha());
-        this.fechaDeCarga = LocalDate.parse(hechoDTO.getFechaDeCarga());
+        this.fechaDeCarga = LocalDateTime.parse(hechoDTO.getFechaDeCarga());
         this.etiqueta = new Etiqueta(hechoDTO.getEtiqueta());
         this.tipoHecho = EnumTipoHecho.valueOf(hechoDTO.getTipoHecho());
     }
@@ -63,8 +64,8 @@ public class Hecho {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-    public LocalDate getFechaDeCarga() {return fechaDeCarga;}
-    public void setFechaDeCarga(LocalDate fechaDeCarga) {this.fechaDeCarga = fechaDeCarga;}
+    public LocalDateTime getFechaDeCarga() {return fechaDeCarga;}
+    public void setFechaDeCarga(LocalDateTime fechaDeCarga) {this.fechaDeCarga = fechaDeCarga;}
     public Ubicacion getUbicacion() {return ubicacion;}
     public EnumTipoHecho getTipoHecho() {return tipoHecho;}
     public void setTipoHecho(EnumTipoHecho tipoHecho) {this.tipoHecho = tipoHecho;}
