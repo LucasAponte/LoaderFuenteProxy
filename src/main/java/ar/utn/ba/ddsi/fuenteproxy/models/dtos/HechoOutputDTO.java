@@ -30,7 +30,7 @@ public class HechoOutputDTO {
         this.descripcion = hecho.getDescripcion();
         this.categoria = hecho.getCategoria().getNombre();
         this.fecha = hecho.getFecha().toString();
-        this.fechaDeCarga = hecho.getFechaDeCarga().toString();
+        this.fechaDeCarga = null;
         this.etiqueta = hecho.getEtiqueta() != null ? hecho.getEtiqueta().getNombre(): null;
         this.ubicacionLat = String.valueOf(hecho.getUbicacion().getLatitud());
         this.ubicacionLon = String.valueOf(hecho.getUbicacion().getLongitud());

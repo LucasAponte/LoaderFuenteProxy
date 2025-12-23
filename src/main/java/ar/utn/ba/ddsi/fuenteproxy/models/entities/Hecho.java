@@ -36,7 +36,6 @@ public class Hecho {
         this.categoria = new Categoria(hechoDTO.getCategoria());
         this.ubicacion = new Ubicacion(hechoDTO.getUbicacion().getLatitud(), hechoDTO.getUbicacion().getLongitud(),new Provincia(hechoDTO.getUbicacion().getProvincia(),hechoDTO.getUbicacion().getPais()));
         this.fecha = LocalDate.parse(hechoDTO.getFecha());
-        this.fechaDeCarga = LocalDateTime.parse(hechoDTO.getFechaDeCarga());
         this.etiqueta = new Etiqueta(hechoDTO.getEtiqueta());
         this.tipoHecho = EnumTipoHecho.valueOf(hechoDTO.getTipoHecho());
     }
